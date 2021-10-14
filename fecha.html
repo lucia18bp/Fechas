@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fecha</title>
+
+    <script src="./js/moment.min.js"></script>
+  </head>
+  <body>
+    <h2>FECHA</h2>
+    <button type="button" id="txtDia"  onclick="RandomDia()">DÍA</button>
+    <h3 type="text" id="Dia"></h3>
+
+    <button type="button" id="txtMes"  onclick="RandomMes()">MES</button>
+    <h3 type="text" id="Mes"></h3>
+    <button type="button" id="txtAño" onclick="document.getElementById('Año').innerHTML = getRndInteger(1900,2021)">AÑO</button>
+    <h3 type="text" id="Año"></h3>
+    <br /><br />
+
+    <button onclick="traducirFecha()">MOSTRAR FECHA</button>
+    <br><br>
+    <h3 id="FechaGenerada"></h3>
+    
+    <script>
+      moment.lang("es", {
+        months:
+          "Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre".split("_"),
+        monthsShort:
+          "Enero._Feb._Mar_Abr._May_Jun_Jul._Ago_Sept._Oct._Nov._Dec.".split("_"),
+        weekdays: "Domingo_Lunes_Martes_Miercoles_Jueves_Viernes_Sabado".split("_"),
+        weekdaysShort: "Dom._Lun._Mar._Mier._Jue._Vier._Sab.".split("_"),
+        weekdaysMin: "Do_Lu_Ma_Mi_Ju_Vi_Sa".split("_"),
+      });
+    </script>
+
+    <script>
+       moment.lang('es'); 
+      console.log(moment().format());
+
+      function RandomDia() {
+        document.getElementById("Dia").innerHTML = Math.floor(Math.random() * ( 31 - 1)) + 1;
+      }
+
+      function RandomMes() {
+        document.getElementById("Mes").innerHTML = Math.floor(Math.random() * ( 12 - 1)) + 1;
+      }
+
+      function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      const traducirFecha = () => {
+        let valueDay = document.getElementById("Dia").textContent;
+        console.log(valueDay);
+        let valueMont = document.getElementById("Mes").textContent;
+        let valueYear = document.getElementById("Año").textContent;
+        
+        if (valueDay && valueMont && valueYear) {
+          let fecha = `${valueYear}/${valueMont}/${valueDay}`;
+          console.log(moment(fecha).format("dddd dd, MMMM de YYYY"));
+          document.getElementById("FechaGenerada").innerHTML= moment(fecha).format("dddd DD, MMMM  YYYY");
+        }
+        else {
+            document.getElementById("FechaGenerada").innerHTML= "Debe ingresar una fecha válida"
+        }
+      };
+    </script>
+  </body>
+</html>

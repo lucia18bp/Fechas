@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <title>Fechas</title>
+</head>
+
+<body>
+    <h3 id="mostrardia">DÍAS QUE HAN TRANSCURRIDO</h3>
+    <h3 id="mostrarmes">MESES QUE HAN TRANSCURRIDO</h3>
+    <h3 id="mostraraño">AÑOS QUE HAN TRANSCURRIDO</h3> 
+    
+    <button type="button"
+        onclick="document.getElementById('mostrardia').innerHTML = diferenciaD(new Date(pa, pm, pd), new Date(sa, sm, sd)); "
+        class="">DÍA</button>
+   
+    <button type="button"
+        onclick="document.getElementById('mostrarmes').innerHTML = diferenciaM(new Date(pa, pm, pd), new Date(sa, sm, sd)); "
+        class="">MES</button>
+
+    <button type="button"
+        onclick="document.getElementById('mostraraño').innerHTML = diferenciaA(new Date(pa, pm, pd), new Date(sa, sm, sd)); "
+        class="">AÑO</button>
+
+    <script type="text/javascript">
+var pa = prompt("INGRESAR EL AÑO EN QUE NACIO");
+var pm = prompt("INGRESAR EL MES EN QUE NACIO");
+var pd = prompt("INGRESAR EL DIA EN QUE NACIO");
+var sa = prompt("INGRESAR EL AÑO ACTUAL");
+var sm = prompt("INGRESAR EL MES ACTUAL");
+var sd = prompt("INGRESAR EL DIA ACTUAL");
+        function diferenciaA(fecha1, fecha2) {
+            if (!(fecha1 instanceof Date) || !(fecha2 instanceof Date)) {
+                throw TypeError('Ambos argumentos deben ser objetos de tipo fecha (Date)');
+            }
+            let diferencia = (fecha2.getTime() - fecha1.getTime()) / 1000;
+            diferencia /= (60 * 60 * 24);
+            diferencia /= 365.25;
+            return Math.abs(Math.round(diferencia));
+        }
+
+        function diferenciaD(fecha3, fecha4) {
+            if (!(fecha3 instanceof Date) || !(fecha4 instanceof Date)) {
+                throw TypeError('Ambos argumentos deben ser objetos de tipo fecha (Date)');
+            }
+            let diferencia = (fecha4.getTime() - fecha3.getTime()) / 1000;
+            diferencia /= (60 * 60 * 24);
+            return Math.abs(Math.round(diferencia));
+        }
+
+        function diferenciaM(fecha5, fecha6) {
+            if (!(fecha5 instanceof Date) || !(fecha6 instanceof Date)) {
+                throw TypeError('Ambos argumentos deben ser objetos de tipo fecha (Date)');
+            }
+            let diferencia = (fecha6.getTime() - fecha5.getTime()) / 1000;
+            diferencia /= (60 * 60 * 24 * 7 * 4);
+            return Math.abs(Math.round(diferencia)) - 1;
+        }
+
+    </script>
+</body>
+</html>
